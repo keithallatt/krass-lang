@@ -3,6 +3,10 @@ Krass Programming language. Krass is designed to integrate into TeX documents to
 
 ## Syntax
 
+**Reserved Keywords:** `function`, `for`, `while`, `if`, `else`, `import`, `break`, `continue`, `try`, `catch`, `return`, `print`, `and`, `or`, `not`, `true`, `false`, `nil`. 
+
+**Reserved Symbols:** `+`, `-`, `*`, `/`, `=`, `&`, `|`, `%`, `;`, `(`, `)`, `<`, `>`, `^`, `'`, `"`, `:`, `[`, `]`, `{`, `}`. 
+
 ## Grammar
 
 ## Semantics
