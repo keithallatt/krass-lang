@@ -6,7 +6,7 @@ Technically, TeX is Turing complete, but defining functions can be extremely dif
 
 ## Syntax
 
-**Reserved Keywords:** `struct`, `function`, `for`, `while`, `if`, `else`, `import`, `break`, `continue`, `try`, `catch`, `return`, `print`, `and`, `or`, `not`, `true`, `false`, `nil`, `global`. 
+**Reserved Keywords:** `struct`, `function`, `for`, `while`, `if`, `else`, `import`, `break`, `continue`, `try`, `catch`, `return`, `print`, `and`, `or`, `not`, `true`, `false`, `nil`, `global`, `read`. 
 
 **Reserved Symbols:** `+`, `-`, `*`, `/`, `=`, `&`, `|`, `%`, `;`, `(`, `)`, `<`, `>`, `^`, `'`, `"`, `:`, `[`, `]`, `{`, `}`. 
 
@@ -55,7 +55,11 @@ Some pure TeX...
 
 ::?
 
--- insert some Krass Code Here --
+function foo(bar, baz) {
+    return bar + baz
+}
+
+print(foo("Hello ", "World!"))
 
 ?::
 
@@ -63,3 +67,6 @@ Some more TeX...
 ```
 
 Some important notes: Krass blocks are run independently of one another. If values from one block are needed in another, that value must: *a*) be declared and initialized *before* referencing it later in code, and *b*) be initialized with the `global` keyword.
+
+
+
