@@ -6,6 +6,32 @@ Highlight how structs and functions and control flow are translated into Python 
 
 As mentioned before, Krass imports will be compiled as inserted code. To prevent shadowing, imported scripts will be bundled in classes when compiled down to Python. Therefore the class name must be referenced to access functions.
 
+foo.krass
+```
+function foo() {
+  return "foo";
+}
+```
+
+bar.krass
+```
+import foo
+
+foo.foo()
+```
+
+will get compiled into:
+
+```
+class foo:
+  @staticmethod
+  def foo():
+    return "foo"
+
+foo.foo()
+```
+
+
 ## Function Definitions
 
 ## Structs
@@ -57,7 +83,7 @@ foo_instance.bar = 3
 In Krass, writing to file is impossible. There is no reason to in the context of where Krass is used. Potentially later in Krass development, file output will be implemented. To read a file the following line should be used.
 
 ```
-file_contents = read(<filename>)
+file_contents = read(<filename>);
 ```
 
 which will compile into:
