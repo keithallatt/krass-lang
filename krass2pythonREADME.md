@@ -4,7 +4,7 @@ Highlight how structs and functions and control flow are translated into Python 
 
 ## Imports
 
-As mentioned before, Krass imports will be compiled as inserted code. If a package's functions shadow another package's, 
+As mentioned before, Krass imports will be compiled as inserted code. To prevent shadowing, imported scripts will be bundled in classes when compiled down to Python. Therefore the class name must be referenced to access functions.
 
 ## Structs
 
