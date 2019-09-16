@@ -87,11 +87,75 @@ foo_instance.bar = 3
 
 ### If Statements
 
+If statements use Java-esque conditions, yet compiling is not too much of a challenge. A line in Krass such as:
+
+```
+if (<cond>) {
+  ...
+}
+```
+
+just gets compiled into:
+
+```
+if <cond>:
+  ...
+```
+
+Of course the condition must be compiled seperately, yet that's not too much of a challenge.
 
 ### For Loops
 
+Much like if statements, for loops have Java-esque features, but still get compiled down to Python.
+
+```
+for (item : iterator) {
+  ...
+}
+```
+
+gets compiled into:
+
+```
+for item in iterator:
+  ...
+```
 
 ### While Loops
+
+Even with conditions needing to be formatted from Krass to Python, while loops share a lot of commonalities with if statements.
+
+```
+while (<cond>) {
+  ...
+}
+```
+
+compiles into:
+
+```
+while <cond>:
+  ...
+```
+
+### Conditions
+
+| Symbol    | Meaning                                 |
+|-----------|-----------------------------------------|
+|  ! / b!   | Logical Not / Bitwise Not               |
+|  & / b&   | Logical And / Bitwise And               |
+|  \| / b\| | Logical Or / Bitwise Or                 |
+|  ^ / b^   | Logical Exclusive Or / Bitwise XOR      |
+|  > / >=   | Greater than / Greater than or equal to |
+|  < / <=   | Less than / Less than or equal to       |
+|  == / !=  | Equal / Not equal                       |
+
+All conditions are expressed as:
+
+`<condition> = <true/false> |  <condition> <bool op> <condition> | <number> <num op> <number>`
+
+where `<bool op>` refers to all binary operators that evaluate on boolean inputs, and `<num op>` refers to binary operations that take numerical values as input and returns a boolean.
+
 
 ## File IO
 
