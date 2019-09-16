@@ -1,7 +1,10 @@
-# krass2pythonREADME.md 
+# Krass2pythonREADME.md 
 
 Highlight how structs and functions and control flow are translated into Python 3 from pure Krass.
 
+## Imports
+
+As mentioned before, Krass imports will be compiled as inserted code. If a package's functions shadow another package's, 
 
 ## Structs
 
@@ -35,6 +38,30 @@ While would be translated into:
 ```
 foo_instance = foo()
 foo_instance.bar = 3
+```
+
+## Control Flow
+
+### If Statements
+
+
+### For Loops
+
+
+### While Loops
+
+## File IO
+
+In Krass, writing to file is impossible. There is no reason to in the context of where Krass is used. Potentially later in Krass development, file output will be implemented. To read a file the following line should be used.
+
+```
+file_contents = read(<filename>)
+```
+
+which will compile into:
+
+```
+file_contents = open(<filename>,'r').read()
 ```
 
 
