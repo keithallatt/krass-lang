@@ -20,16 +20,29 @@ An import statement (`import <package>`) imports sections of Krass code, which w
 
 ### Function Declarations
 
-All function delarations are as follows. First comes the `function` keyword. Then comes the function name, which follows variable naming conventions (Alphanumeric with underscores, first character can't be a number, etc.) which will uniquely identify the function. For each parameter, type and variable name will be laid out in a `name: type` format.
+All function delarations are as follows. First comes the `function` keyword. Then comes the function name, which follows variable naming conventions (Alphanumeric with underscores, first character can't be a number, etc.) which will uniquely identify the function. For each parameter, a variable name will be supplied.
 
 A sample function declaration looks as follows:
 
 ```
-function foobar(foo: <type>, bar: <type>) {
+function foobar(foo, bar) {
   ...
 }
 ```
 
+### Control Flow
+
+Most control flow elements are expressed similarly to Java and C variants. If statements and loops are fairly similar, less the type casting.
+
+**If Statements:** `if (<cond>) { ... } else { ... }` or `if (<cond>) { ... }`
+
+**For Loops:** `for (item : iterator) { ... }` or `for (index : range(n)) { ... }`
+
+**While Loops:** `while (<cond>) { ... }`
+
+### Exception Handling
+
+Exception Handling will be fashioned like Java and C variants as well. Following a `try { ... }` block with at least one `catch (exceptionName) { ... }` block, specifying the name for the exception. If no Catch block is supplied, an empty catch-all block will be placed in automatically.
 
 ## Semantics
 
