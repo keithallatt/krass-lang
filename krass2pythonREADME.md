@@ -34,6 +34,21 @@ foo.foo()
 
 ## Function Definitions
 
+Function definitions in Krass begin with the function keyword, then a function name and parameters. The function body follows in braces.
+
+```
+function foo(bar) {
+  ...
+}
+```
+
+translates to:
+
+```
+def foo(bar):
+  ...
+```
+
 ## Structs
 
 Structs are usually groups of typed members in C and derivatives of C, but in Krass, they are simply a grouping of many fields. These can be initialized or not, if they aren't, they will be initialized to `nil`. 
