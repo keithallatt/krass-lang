@@ -6,6 +6,8 @@ Highlight how structs and functions and control flow are translated into Python 
 
 As mentioned before, Krass imports will be compiled as inserted code. To prevent shadowing, imported scripts will be bundled in classes when compiled down to Python. Therefore the class name must be referenced to access functions.
 
+## Function Definitions
+
 ## Structs
 
 Structs are usually groups of typed members in C and derivatives of C, but in Krass, they are simply a grouping of many fields. These can be initialized or not, if they aren't, they will be initialized to `nil`. 
