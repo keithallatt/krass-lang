@@ -6,7 +6,25 @@
 #     the final PDF file will be kept.
 
 # input is a Krass file. extension-> *.krass
+FILE=""
 
+if (($# == 1)); then
+	FILE=$1
+else
+	echo "Wrong number of arguments. Only supply parent directory."
+	exit 1
+fi
+
+ext="${FILE#*.}"
+
+ext=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
+
+
+if [ "${ext}" == "krass" ]; then
+	echo "Parsing $FILE"
+else
+	echo "Cannot compile non-Krass file. Please ensure file extension is *.krass";
+fi
 
 # create blank TeX file with "_compiled" appended to the name (i.e. *.krass -> *_compiled.tex)
 
