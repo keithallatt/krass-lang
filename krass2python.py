@@ -6,4 +6,4 @@ output will be inserted into the final TeX document.
 """
 
 if __name__ == "__main__":
-  pass
+	pass

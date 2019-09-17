@@ -5,4 +5,25 @@
 #     the resultant TeX file will be passed through a TeX compiler and
 #     the final PDF file will be kept.
 
-echo "Krass Compiler Shell Script";
+# input is a Krass file. extension-> *.krass
+
+
+# create blank TeX file with "_compiled" appended to the name (i.e. *.krass -> *_compiled.tex)
+
+
+# Parse through file
+
+
+# extract Krass components
+
+
+# pass Krass components to krass2python.py
+
+
+# use generated file to append to running total of TeX code
+# python3 *_python.py >> *_compiled.tex
+
+
+
+
+
