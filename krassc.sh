@@ -27,18 +27,16 @@ else
 fi
 
 # create blank TeX file with "_compiled" appended to the name (i.e. *.krass -> *_compiled.tex)
-filename="${FILE%%.*}"
-filename+="_compiled.tex"
-touch $filename
+COMPILED="${FILE%%.*}"
+COMPILED+="_compiled.tex"
+touch $COMPILED
+
+# This needs to be done with Python
 
 # Parse through file
-
-
 # extract Krass components
-
-
 # pass Krass components to krass2python.py
-
+python3 parseKrass.py $FILE $COMPILED
 
 # use generated file to append to running total of TeX code
 # python3 *_python.py >> *_compiled.tex
