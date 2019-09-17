@@ -27,7 +27,9 @@ else
 fi
 
 # create blank TeX file with "_compiled" appended to the name (i.e. *.krass -> *_compiled.tex)
-
+filename="${FILE%%.*}"
+filename+="_compiled.tex"
+touch $filename
 
 # Parse through file
 
