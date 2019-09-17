@@ -140,12 +140,14 @@ while <cond>:
 
 ### Conditions
 
+Some symbols in Krass need distinction between bitwise and logical operations, because of the lack of static typing. 
+
 | Symbol    | Meaning                                 |
 |-----------|-----------------------------------------|
 |  ! / b!   | Logical Not / Bitwise Not               |
 |  & / b&   | Logical And / Bitwise And               |
 |  \| / b\| | Logical Or / Bitwise Or                 |
-|  ^ / b^   | Logical Exclusive Or / Bitwise XOR      |
+|  ^        | Logical / Bitwise XOR      |
 |  > / >=   | Greater than / Greater than or equal to |
 |  < / <=   | Less than / Less than or equal to       |
 |  == / !=  | Equal / Not equal                       |
@@ -171,4 +173,5 @@ which will compile into:
 file_contents = open(<filename>,'r').read()
 ```
 
+This leads the `read` function to extract the contents of a given file. 
 
