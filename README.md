@@ -10,8 +10,6 @@ Technically, TeX is Turing complete, but defining functions can be extremely dif
 
 **Reserved Symbols:** `+`, `-`, `*`, `/`, `=`, `&`, `|`, `%`, `;`, `(`, `)`, `<`, `>`, `^`, `'`, `"`, `:`, `[`, `]`, `{`, `}`. 
 
-**Primitive Data Types:** `int`, `float`, `char`, `boolean`, `array`.
-
 ## Grammar
 
 ### Import Statements
