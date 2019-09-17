@@ -1,1 +1,6 @@
-/sampleKrass.*
+# ignore all sample krass pages, so 
+# the repository doesn't become jumbled 
+# with them. Compiled files and such 
+# will be added later.
+
+/sampleKrass*.*
