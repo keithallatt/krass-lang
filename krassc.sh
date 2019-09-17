@@ -38,6 +38,6 @@ touch $COMPILED
 # pass Krass components to krass2python.py
 python3 parseKrass.py $FILE $COMPILED
 
-pdflatex $COMPILED
+#pdflatex $COMPILED
 
 

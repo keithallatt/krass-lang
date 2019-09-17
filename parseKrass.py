@@ -1,7 +1,19 @@
 import sys
+import tempfile
 
 
 def compile_krass(krass_file_contents):
+	tf = tempfile.NamedTemporaryFile()
+	
+	original_path = tf.name
+	
+	# generate python file. writing to `tf`
+	
+
+	# create a subprocess with file generated
+	#proc = subprocess.Popen(['python3', 'printbob.py',  'arg1 arg2 arg3 arg4'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	#print proc.communicate()[0]
+
 	return ""
 
 
