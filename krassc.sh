@@ -38,10 +38,6 @@ touch $COMPILED
 # pass Krass components to krass2python.py
 python3 parseKrass.py $FILE $COMPILED
 
-# use generated file to append to running total of TeX code
-# python3 *_python.py >> *_compiled.tex
-
-
-
+pdflatex $COMPILED
 
 
