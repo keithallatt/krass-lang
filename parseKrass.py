@@ -44,6 +44,7 @@ def compile_krass(krass_file_contents):
 		if struct_mode:
 			if line == "}":
 				struct_mode = False
+				indent_level -= 2
 			if "=" in line:
 				# default value
 				output_line += line.replace(";", "")  # remove the ; if it was added.
@@ -114,6 +115,7 @@ def compile_krass(krass_file_contents):
 			name = z.group(1)
 			output_line += "class "+name+":\n\t"+("\t"*indent_level)+"def __init__(self):"
 			struct_mode = True
+			indent_level += 2
 		
 		# End of blocks: i.e. '}' as a line.
 		z = re.match("}", line)
