@@ -4,6 +4,10 @@ import re
 
 
 def compile_krass_conditional(krass_conditional):
+	"""
+	Compile Krass conditional statements to Python conditional statements.
+	"""
+	# change true to True, && to and etc.
 	changes = [
 		("true", "True"),
 		("false", "False"),
@@ -19,6 +23,11 @@ def compile_krass_conditional(krass_conditional):
 
 
 def compile_krass(krass_file_contents):
+	"""
+	Compile a section of krass code. 
+	For any boolean operation not in a if/else if/while, 
+	Python formatting is required (as of now)
+	"""
 	tf = tempfile.NamedTemporaryFile()
 	
 	original_path = tf.name
@@ -121,8 +130,9 @@ def compile_krass(krass_file_contents):
 		z = re.match("}", line)
 		if z:
 			special_line = True
-			indent_level -= 1		
-
+			indent_level -= 1	
+			
+		# for now, no exception handling will be implementable. 
 
 		# not a special line, so treat it as pure python.
 		if not special_line:
@@ -130,18 +140,14 @@ def compile_krass(krass_file_contents):
 
 		output_line += "\n"
 		tf.write(bytes(output_line, 'utf-8'))
-	
 
 	# create a subprocess with file generated
-	#proc = subprocess.Popen(['python3', original_path,  ''], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	#print proc.communicate()[0]
+	proc = subprocess.Popen(['python3', original_path,  ''], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	output = proc.communicate()[0]
 	
-	tf.seek(0)
-	print(tf.read())
-
 	tf.close()
 
-	return ""
+	return output
 
 
 # sys.argv should = [script name, raw file, compiled file]
