@@ -15,8 +15,10 @@ else
 	exit 1
 fi
 
+# Get file extension
 ext="${FILE#*.}"
 
+# make extension lowercase.
 ext=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
 
 
@@ -31,13 +33,9 @@ COMPILED="${FILE%%.*}"
 COMPILED+="_compiled.tex"
 touch $COMPILED
 
-# This needs to be done with Python
-
 # Parse through file
 # extract Krass components
 # pass Krass components to krass2python.py
 python3 parseKrass.py $FILE $COMPILED
 
-#pdflatex $COMPILED
-
-
+pdflatex $COMPILED
