@@ -18,18 +18,49 @@ def compile_krass(krass_file_contents):
 
 	# 	Failure to format code properly will lead to broken Python translations, 
 	
+	indent_level = 0
+
 	for line in krass_file_contents.split("\n"):
 		line = line.strip()  # remove whitespace
-	
+		output_line = "\t" * indent_level
+
 		# check for function block
 		z = re.match("function\\s+(\\w+)\\(((\\w+){0,1}|((\\w+,\\s*)+(\\w+)))\\)\\s*\\{", line)
 		if z:
 			# create function declaration.
-			pass
+			# isolate function signature
+			function_signature = line[8:-1].strip() 
+			output_line += "def " + function_signature + ":"
+			indent_level += 1
+				
+
+		# If blocks
+		
+		# Else if blocks
+		
+		# Else blocks
+		
+		# For Loops
+		
+		# While Loops
+		
+		# Try Catch blocks
+		
+		# structs
+		
+		# End of blocks: i.e. '}' as a line.
+		
+		# Conditions
+
+		output_line += "\n"
+		tf.write(bytes(output_line, 'utf-8'))
+	
 
 	# create a subprocess with file generated
 	#proc = subprocess.Popen(['python3', original_path,  ''], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	#print proc.communicate()[0]
+
+	tf.close()
 
 	return ""
 
