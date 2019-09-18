@@ -4,7 +4,18 @@ import re
 
 
 def compile_krass_conditional(krass_conditional):
-	return "True"
+	changes = [
+		("true", "True"),
+		("false", "False"),
+		("&&", " and "),
+		("||", " or "),  # keep an eye on this one, for regex or non
+		("!", " not ")
+	]
+
+	for change in changes:
+		krass_conditional = krass_conditional.replace(change[0], change[1])	
+
+	return krass_conditional
 
 
 def compile_krass(krass_file_contents):
@@ -28,9 +39,12 @@ def compile_krass(krass_file_contents):
 		line = line.strip()  # remove whitespace
 		output_line = "\t" * indent_level
 
+		special_line = False
+
 		# check for function block
 		z = re.match("function\\s+(\\w+)\\(((\\w+){0,1}|((\\w+,\\s*)+(\\w+)))\\)\\s*\\{", line)
 		if z:
+			special_line = True
 			# create function declaration.
 			# isolate function signature
 			function_signature = line[8:-1].strip() 
@@ -40,7 +54,8 @@ def compile_krass(krass_file_contents):
 		# If blocks
 		z = re.match("if\\s*\\((.*)\\)\\s*{", line)
 		if z:
-			# create if block declaration.
+			special_line = True
+			# create if block declaration
 			conditional = z.group(1) 
 			output_line += "if " + compile_krass_conditional(conditional) + ":"						
 			indent_level += 1
@@ -50,16 +65,36 @@ def compile_krass(krass_file_contents):
 		# Else blocks
 		
 		# For Loops
-		
+		z = re.match("for\\s*\\((.*)\\s*:\\s*(.*)\\)\\s*{", line)
+		if z:
+			special_line = True
+			item = z.group(1)
+			iterator = z.group(2)
+			output_line += "for " + item + " in " + iterator + ":"
+			indent_level += 1
+
 		# While Loops
-		
+		z = re.match("while\\s*\\((.*)\\)\\s*{", line)
+		if z:
+			special_line = True
+			conditional = z.group(1)
+			output_line += "while " + compile_krass_conditional(conditional) + ":"
+			indent_level += 1
+
 		# Try Catch blocks
 		
 		# structs
 		
 		# End of blocks: i.e. '}' as a line.
-		
-		# Conditions
+		z = re.match("}", line)
+		if z:
+			special_line = True
+			indent_level -= 1		
+
+
+		# not a special line, so treat it as pure python.
+		if not special_line:
+			output_line += line
 
 		output_line += "\n"
 		tf.write(bytes(output_line, 'utf-8'))
