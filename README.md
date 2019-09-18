@@ -6,15 +6,11 @@ Technically, TeX is Turing complete, but defining functions can be extremely dif
 
 ## Syntax
 
-**Reserved Keywords:** `struct`, `function`, `for`, `while`, `if`, `else`, `import`, `break`, `continue`, `try`, `catch`, `return`, `print`, `and`, `or`, `not`, `true`, `false`, `nil`, `global`, `read`. 
+**Reserved Keywords:** `struct`, `function`, `for`, `while`, `if`, `else`, `break`, `continue`, `try`, `catch`, `return`, `print`, `and`, `or`, `not`, `true`, `false`, `nil`, `global`, `read`. 
 
 **Reserved Symbols:** `+`, `-`, `*`, `/`, `=`, `&`, `|`, `%`, `;`, `(`, `)`, `<`, `>`, `^`, `'`, `"`, `:`, `[`, `]`, `{`, `}`. 
 
 ## Grammar
-
-### Import Statements
-
-An import statement (`import <package>`) imports sections of Krass code, which will usually contain function declarations and structs. When the code segment is evaluated, the imported sections of code will be inserted wherever the import statement lies. Any non-function and non-struct code will still be run.
 
 ### Function Declarations
 
@@ -70,35 +66,6 @@ Some important notes: Krass blocks are run independently of one another. If valu
 # Krass2pythonREADME.md 
 
 Highlight how structs and functions and control flow are translated into Python 3 from pure Krass.
-
-## Imports
-
-As mentioned before, Krass imports will be compiled as inserted code. To prevent shadowing, imported scripts will be bundled in classes when compiled down to Python. Therefore the class name must be referenced to access functions.
-
-foo.krass
-```
-function foo() {
-  return "foo";
-}
-```
-
-bar.krass
-```
-import foo
-
-foo.foo()
-```
-
-will get compiled into:
-
-```
-class foo:
-  @staticmethod
-  def foo():
-    return "foo"
-
-foo.foo()
-```
 
 
 ## Function Definitions
