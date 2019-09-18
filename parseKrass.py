@@ -3,6 +3,10 @@ import tempfile
 import re
 
 
+def compile_krass_conditional(krass_conditional):
+	return "True"
+
+
 def compile_krass(krass_file_contents):
 	tf = tempfile.NamedTemporaryFile()
 	
@@ -19,7 +23,7 @@ def compile_krass(krass_file_contents):
 	# 	Failure to format code properly will lead to broken Python translations, 
 	
 	indent_level = 0
-
+	
 	for line in krass_file_contents.split("\n"):
 		line = line.strip()  # remove whitespace
 		output_line = "\t" * indent_level
@@ -33,9 +37,14 @@ def compile_krass(krass_file_contents):
 			output_line += "def " + function_signature + ":"
 			indent_level += 1
 				
-
 		# If blocks
-		
+		z = re.match("if\\s*\\((.*)\\)\\s*{", line)
+		if z:
+			# create if block declaration.
+			conditional = z.group(1) 
+			output_line += "if " + compile_krass_conditional(conditional) + ":"						
+			indent_level += 1
+
 		# Else if blocks
 		
 		# Else blocks
@@ -59,6 +68,9 @@ def compile_krass(krass_file_contents):
 	# create a subprocess with file generated
 	#proc = subprocess.Popen(['python3', original_path,  ''], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	#print proc.communicate()[0]
+	
+	tf.seek(0)
+	print(tf.read())
 
 	tf.close()
 
