@@ -178,15 +178,15 @@ while <cond>:
 
 Some symbols in Krass need distinction between bitwise and logical operations, because of the lack of static typing. 
 
-| Symbol    | Meaning                                 |
-|-----------|-----------------------------------------|
-|  ! / b!   | Logical Not / Bitwise Not               |
-|  & / b&   | Logical And / Bitwise And               |
-|  \| / b\| | Logical Or / Bitwise Or                 |
-|  ^        | Logical / Bitwise XOR      |
-|  > / >=   | Greater than / Greater than or equal to |
-|  < / <=   | Less than / Less than or equal to       |
-|  == / !=  | Equal / Not equal                       |
+| Symbol     | Meaning                                 |
+|------------|-----------------------------------------|
+|  !         | Logical Not                             |
+|  && / &    | Logical And / Bitwise And               |
+|  \|\| / \| | Logical Or / Bitwise Or                 |
+|  ^         | Logical / Bitwise XOR                   |
+|  > / >=    | Greater than / Greater than or equal to |
+|  < / <=    | Less than / Less than or equal to       |
+|  == / !=   | Equal / Not equal                       |
 
 All conditions are expressed as:
 
