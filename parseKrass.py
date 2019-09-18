@@ -35,9 +35,25 @@ def compile_krass(krass_file_contents):
 	
 	indent_level = 0
 	
+	struct_mode = False  # if defining a struct
+	
 	for line in krass_file_contents.split("\n"):
 		line = line.strip()  # remove whitespace
 		output_line = "\t" * indent_level
+
+		if struct_mode:
+			if line == "}":
+				struct_mode = False
+			if "=" in line:
+				# default value
+				output_line += line.replace(";", "")  # remove the ; if it was added.
+			else:
+				# no default value
+				output_line += line.replace(";", "") + " = None"
+
+			output_line += "\n"
+			tf.write(bytes(output_line, 'utf-8'))
+			continue
 
 		special_line = False
 
@@ -61,9 +77,19 @@ def compile_krass(krass_file_contents):
 			indent_level += 1
 
 		# Else if blocks
+		z = re.match("}\\s*else\\s+if\\s*\\((.*)\\)\\s*{", line)
+		if z:
+			special_line = True			
+			conditional = z.group(1)
+			# remove a tab and add in the elif block, don't change indentation.
+			output_line = output_line[:-1] + "elif " + compile_krass_conditional(conditional) + ":"
 		
 		# Else blocks
-		
+		z = re.match("}\\s*else\\s*{", line)
+		if z:
+			special_line = True
+			output_line = output_line[:-1] + "else:"		
+
 		# For Loops
 		z = re.match("for\\s*\\((.*)\\s*:\\s*(.*)\\)\\s*{", line)
 		if z:
@@ -81,9 +107,13 @@ def compile_krass(krass_file_contents):
 			output_line += "while " + compile_krass_conditional(conditional) + ":"
 			indent_level += 1
 
-		# Try Catch blocks
-		
 		# structs
+		z = re.match("struct\\s+(.*)\\s*{", line)
+		if z:
+			special_line = True
+			name = z.group(1)
+			output_line += "class "+name+":\n\t"+("\t"*indent_level)+"def __init__(self):"
+			struct_mode = True
 		
 		# End of blocks: i.e. '}' as a line.
 		z = re.match("}", line)
