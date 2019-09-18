@@ -50,6 +50,7 @@ print(foo("Hello ", "World!"))
 Some more TeX...
 ```
 
-Some important notes: Krass blocks are run independently of one another. If values from one block are needed in another, that value must: *a*) be declared and initialized *before* referencing it later in code, and *b*) be initialized with the `global` keyword.
+Some important notes: 
 
-Pure Python can be used for function calls and builtins. Imports work for python libraries.
+- Krass blocks are run independently of one another.
+- Pure Python can be used for function calls and builtins. Imports work for python libraries.
