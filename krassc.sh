@@ -22,15 +22,14 @@ ext="${FILE#*.}"
 ext=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
 
 
-if [ "${ext}" == "krass" ]; then
-	echo "Parsing $FILE"
-else
+if [ "${ext}" != "krass" ]; then
 	echo "Cannot compile non-Krass file. Please ensure file extension is *.krass";
+	exit 1
 fi
 
-# create blank TeX file with "_compiled" appended to the name (i.e. *.krass -> *_compiled.tex)
+# create blank TeX file with "tex" file extension appended to the name (i.e. *.krass -> *.tex)
 COMPILED="${FILE%%.*}"
-COMPILED+="_compiled.tex"
+COMPILED+=".tex"
 touch $COMPILED
 
 # Parse through file
@@ -38,4 +37,5 @@ touch $COMPILED
 # pass Krass components to krass2python.py
 python3 parseKrass.py $FILE $COMPILED
 
-pdflatex $COMPILED
+pdflatex -halt-on-error $COMPILED | grep '^!.*' -A200 --color=always 
+

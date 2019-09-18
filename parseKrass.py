@@ -1,6 +1,7 @@
 import sys
 import tempfile
 import re
+import subprocess
 
 
 def compile_krass_conditional(krass_conditional):
@@ -28,8 +29,8 @@ def compile_krass(krass_file_contents):
 	For any boolean operation not in a if/else if/while, 
 	Python formatting is required (as of now)
 	"""
-	tf = tempfile.NamedTemporaryFile()
-	
+	tf = tempfile.NamedTemporaryFile(delete=False)
+		
 	original_path = tf.name
 	
 	# generate python file. writing to `tf`
@@ -136,18 +137,19 @@ def compile_krass(krass_file_contents):
 
 		# not a special line, so treat it as pure python.
 		if not special_line:
-			output_line += line
+			output_line += line.replace(";", "")
 
 		output_line += "\n"
 		tf.write(bytes(output_line, 'utf-8'))
 
-	# create a subprocess with file generated
-	proc = subprocess.Popen(['python3', original_path,  ''], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	output = proc.communicate()[0]
-	
+	# file needs to be closed first.
 	tf.close()
-
-	return output
+	# create a subprocess with file generated
+	
+	cmd = subprocess.run(["python3", original_path], stdout=subprocess.PIPE)
+	stdout = cmd.stdout.decode()  # bytes => str
+	
+	return stdout
 
 
 # sys.argv should = [script name, raw file, compiled file]
@@ -175,4 +177,5 @@ for chunk in contents.split("?::"):
 	else:
 		# probably end, no krass chunk, or malformed. 
 		compiled_file.write(chunk)
+
 
