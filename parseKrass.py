@@ -1,5 +1,6 @@
 import sys
 import tempfile
+import re
 
 
 def compile_krass(krass_file_contents):
@@ -9,9 +10,25 @@ def compile_krass(krass_file_contents):
 	
 	# generate python file. writing to `tf`
 	
+	# since Krass needs proper formatting, line by line execution should be ok.
+	# 	if a line fits a special requirement, such as imports, function declarations, 
+	# 	if statements or loops, appropriate action will take place. Indent level will be
+	#	controlled by curly braces ( '{' and '}' ), in the case of blocks of code. Indentation
+	#	in Krass code doesn't matter, so it will be stripped off, and added in post translation
+
+	# 	Failure to format code properly will lead to broken Python translations, 
+	
+	for line in krass_file_contents.split("\n"):
+		line = line.strip()  # remove whitespace
+	
+		# check for function block
+		z = re.match("function\\s+(\\w+)\\(((\\w+){0,1}|((\\w+,\\s*)+(\\w+)))\\)\\s*\\{", line)
+		if z:
+			# create function declaration.
+			pass
 
 	# create a subprocess with file generated
-	#proc = subprocess.Popen(['python3', 'printbob.py',  'arg1 arg2 arg3 arg4'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	#proc = subprocess.Popen(['python3', original_path,  ''], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	#print proc.communicate()[0]
 
 	return ""
