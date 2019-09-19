@@ -28,7 +28,10 @@ if [ "${ext}" != "krass" ]; then
 fi
 
 # create blank TeX file with "tex" file extension appended to the name (i.e. *.krass -> *.tex)
+
 COMPILED="${FILE%%.*}"
+PDF_FILE=$COMPILED
+PDF_FILE+=".pdf"
 COMPILED+=".tex"
 touch $COMPILED
 
@@ -38,4 +41,8 @@ touch $COMPILED
 python3 parseKrass.py $FILE $COMPILED
 
 pdflatex -halt-on-error $COMPILED | grep '^!.*' -A200 --color=always 
+
+# can change later if you want, by default, open the pdf after generation.
+
+open $PDF_FILE
 
