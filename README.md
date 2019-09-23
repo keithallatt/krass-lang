@@ -8,5 +8,4 @@ Technically, TeX is Turing complete, but defining functions can be extremely dif
 
 To set up krass, first download the repository, and run `setup.sh`. This will move the files to a hidden directory (on Mac and Linux). To use Krass in Atom, which is heavily recommended, use the package `process-palette` and create a custom process. Under "Shell Command:", type `~/.krass-lang/krassc.sh {fileDirAbsPath}/*.krass`.
 
-If you prefer other text editors, you can use the command line to compile files, using `> ~/.krass-lang/krassc.sh {file}`.
-
+If you prefer other text editors, you can use the command line to compile files, using `> ~/.krass-lang/krassc.sh {file}`, or create an alias in `~/.bashrc` or `~/.bash_profile` depending on your operating system.
