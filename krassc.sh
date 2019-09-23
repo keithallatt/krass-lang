@@ -11,7 +11,7 @@ FILE=""
 if (($# == 1)); then
 	FILE=$1
 else
-	echo "Wrong number of arguments. Only supply parent directory."
+	echo "Wrong number of arguments. Only supply krass file."
 	exit 1
 fi
 
